@@ -42,7 +42,7 @@ const Navbar = () => {
         <MenuItem onClick={() => navigate("/")}>메인 홈</MenuItem>
         {/* 정확한 경로로 이동 */}
         <MenuItem onClick={() => navigate("/business")}>사업분야</MenuItem>
-        <MenuItem>주요공사 실적</MenuItem>
+        <MenuItem onClick={() => navigate("/construction")}>공사실적</MenuItem>
         <MenuItem>견적의뢰</MenuItem>
         <MenuItem>공지사항</MenuItem>
       </Menu>

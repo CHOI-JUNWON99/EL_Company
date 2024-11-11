@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
 import BusinessIntro from "./pages/BusinessIntro";
+import Construction from "./pages/Construction";
 
 const theme = createTheme({
   palette: {
@@ -32,6 +33,7 @@ function App() {
           <Route path="/" element={<MainPage />} />
           {/* 경로를 소문자로 통일 */}
           <Route path="/business" element={<BusinessIntro />} />
+          <Route path="/construction" element={<Construction />} />
         </Routes>
         <Footer />
       </Router>
