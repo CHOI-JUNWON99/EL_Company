@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const NavbarContainer = styled.nav`
@@ -32,12 +33,15 @@ const Language = styled.div`
 `;
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   return (
     <NavbarContainer>
       <Logo>회사로고 & 회사명</Logo>
       <Menu>
-        <MenuItem>회사소개</MenuItem>
-        <MenuItem>사업분야</MenuItem>
+        <MenuItem onClick={() => navigate("/")}>메인 홈</MenuItem>
+        {/* 정확한 경로로 이동 */}
+        <MenuItem onClick={() => navigate("/business")}>사업분야</MenuItem>
         <MenuItem>주요공사 실적</MenuItem>
         <MenuItem>견적의뢰</MenuItem>
         <MenuItem>공지사항</MenuItem>
