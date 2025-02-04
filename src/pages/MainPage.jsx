@@ -1,10 +1,15 @@
-import React from "react";
-import { Grid, Button } from "@mui/material";
+import React, { Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import MainPageImg from "/business/MainPageImg1.webp";
+import BusinessMobile from "/business/BusinessMobile.webp";
+import HoistingMobile from "/business/HoistingMobile.webp";
+import MainImage1_3 from "/business/Main1-3.webp";
+import { MdElevator } from "react-icons/md";
 
-import MainPageImage from "../assets/MainPage2.webp";
-import ServiceImage from "../assets/MainPage2.webp";
+const EquipmentCarousel = React.lazy(() =>
+  import("../components/EquipmentCarousel.jsx")
+);
 
 const MainPageWrapper = styled.div`
   text-align: center;
@@ -12,49 +17,178 @@ const MainPageWrapper = styled.div`
 
 const HeroSection = styled.section`
   width: 100%;
-  height: 1000px;
+  height: 800px;
   background-size: cover;
   background-position: center;
-  background-image: url(${MainPageImage});
+  background-image: url(${MainPageImg});
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
+  margin-top: -2px;
+
+  @media (min-width: 2561px) {
+    width: 100%;
+    height: 900px;
+    background-image: url("/business/MainPageImg.jpg"); /* 고해상도 이미지 */
+    //background-position: 0 -180px;
+  }
+
+  @media (max-width: 2560px) {
+    width: 100%;
+    height: 900px;
+    //background-position: 0px 1px;
+  }
+
+  @media (max-width: 1440px) {
+    width: 100%;
+    height: 700px;
+    //background-position: 0 1px;
+  }
+
+  @media (max-width: 1024px) {
+    width: 100%;
+    height: 600px;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 400px;
+  }
+
+  @media (max-width: 425px) {
+    width: 100%;
+    height: 400px;
+  }
 `;
 
 const HeroText = styled.h4`
-  font-size: 1.5rem;
-  margin-top: 1rem;
-  color: black;
+  font-size: 1.3rem;
+  color: white;
+  margin: 0 auto;
+  max-width: 800px;
+  line-height: 1.5;
+  user-select: none;
+
+  @media (min-width: 2561px) {
+    font-size: 1.3rem;
+    margin-top: 0px;
+  }
+
+  @media (max-width: 2560px) {
+    font-size: 1.3rem;
+    margin-top: 400px;
+  }
+
+  @media (max-width: 1700px) {
+    font-size: 1.3rem;
+    margin-top: 300px;
+  }
+
+  @media (max-width: 1440px) {
+    font-size: 1rem;
+    margin-top: 250px;
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 0.8rem;
+    margin-top: 200px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.6rem;
+    margin-top: 150px;
+  }
+
+  @media (max-width: 425px) {
+    font-size: 0.5rem;
+  }
+`;
+
+const ServiceHeroText = styled.h4`
+  font-size: 1rem;
+  color: #000000;
+  user-select: none;
+  padding: 5px 10px;
+  line-height: 1.2;
+  text-align: center;
+  user-select: none;
+
+  @media (min-width: 2561px) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 2560px) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 1440px) {
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.7rem;
+  }
+
+  @media (max-width: 425px) {
+    font-size: 0.6rem;
+  }
 `;
 
 const ServicesSection = styled.div`
-  padding: 10rem 0;
+  padding-top: 2rem;
   background-color: white;
+
+  @media (max-width: 425px) {
+    padding-top: 4rem;
+  }
 `;
 
 const ServiceCardWrapper = styled.div`
   position: relative;
   width: 300px;
   height: 300px;
-  background-image: url(${ServiceImage});
+  background-image: url(${(props) => props.$image});
   background-size: cover;
   background-position: center;
   border-radius: 10px;
   overflow: hidden;
-  margin: 20px;
+  margin: 20px 20px 0px 20px;
+  cursor: pointer;
+
+  @media (max-width: 1084px) {
+    width: 185px;
+    height: 185px;
+  }
+
+  @media (max-width: 745px) {
+    width: 100px;
+    height: 100px;
+  }
+
+  @media (max-width: 425px) {
+    width: 63px;
+    height: 63px;
+  }
 `;
 
 const ServiceButton = styled.div`
   position: absolute;
   bottom: 20px;
   right: 20px;
-  background-color: black;
+  background-color: #03c75a;
   color: white;
   padding: 10px 20px;
   border-radius: 20px;
-  font-size: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-decoration: none;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -62,35 +196,193 @@ const ServiceButton = styled.div`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #333;
+    background-color: #028841;
   }
-`;
 
-const LocationsSection = styled.section`
-  padding: 2.5rem 0;
-`;
+  @media (max-width: 1084px) {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    width: auto;
+    min-width: 40px;
+    height: auto;
+    line-height: 1.2;
+    text-align: center;
+    bottom: 3px;
+    right: 2px;
+  }
 
-const LocationHeading = styled.h2`
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-`;
+  @media (max-width: 745px) {
+    font-size: 0.5rem;
+    padding: 5px 10px;
+    width: auto;
+    min-width: 40px;
+    height: auto;
+    line-height: 1.2;
+    text-align: center;
+    bottom: 3px;
+    right: 2px;
+  }
 
-const LocationWrapper = styled.div`
-  margin-bottom: 2rem;
-  font-size: 1rem;
-  padding: 2rem; /* 지도 사이에 padding 추가 */
-  background-color: #f9f9f9; /* 배경색 추가 (선택 사항) */
-  border-radius: 10px; /* 둥근 모서리 (선택 사항) */
+  @media (max-width: 425px) {
+    font-size: 0.25rem;
+    padding: 5px 10px;
+    width: auto;
+    min-width: 40px;
+    height: auto;
+    line-height: 1.2;
+    text-align: center;
+    bottom: 3px;
+    right: 2px;
+  }
 `;
 
 const ServiceHeading = styled.h2`
   font-size: 2.5rem;
   margin-bottom: 2rem;
+  user-select: none;
+
+  @media (max-width: 425px) {
+    font-size: 1.3rem;
+  }
 `;
 
-function ServiceCard({ text, onClick }) {
+const BlogNote = styled.p`
+  font-size: 0.8rem;
+  color: #555;
+  margin-top: 0px;
+  user-select: none;
+
+  span {
+    color: #03c75a;
+    font-weight: bold;
+  }
+  @media (max-width: 425px) {
+    font-size: 0.6rem;
+  }
+`;
+
+const ShortcutSection = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 2rem 0;
+  gap: 20px;
+  position: relative;
+  top: -130px;
+
+  @media (max-width: 950px) {
+    display: none;
+  }
+`;
+
+const ShortcutCard = styled.div`
+  width: 220px;
+  height: 150px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  @media (max-width: 425px) {
+    width: 180px;
+    height: 120px;
+  }
+`;
+
+const ShortcutIcon = styled.div`
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+`;
+
+const ShortcutText = styled.p`
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+
+  @media (max-width: 425px) {
+    font-size: 0.9rem;
+  }
+`;
+
+const RequestSection = styled.div`
+  padding: 3rem 1rem;
+  background-color: #f9f9f9;
+  text-align: center;
+`;
+
+const RequestTitle = styled.h3`
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+  user-select: none;
+
+  @media (max-width: 425px) {
+    font-size: 1.3rem;
+  }
+`;
+
+const ContactInfo = styled.div`
+  margin-bottom: 2rem;
+`;
+
+const ContactItem = styled.div`
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #555;
+
+  span {
+    font-weight: bold;
+    color: #2c1919;
+  }
+
+  @media (max-width: 425px) {
+    font-size: 0.9rem;
+  }
+`;
+
+const RequestButton = styled.button`
+  padding: 1rem 2rem;
+  background-color: #3b3b3b;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #000000;
+  }
+
+  @media (max-width: 425px) {
+    font-size: 0.9rem;
+    padding: 0.8rem 1.5rem;
+  }
+`;
+
+function ShortcutCardComponent({ icon, text, onClick }) {
   return (
-    <ServiceCardWrapper onClick={onClick}>
+    <ShortcutCard onClick={onClick}>
+      <ShortcutIcon>{icon}</ShortcutIcon>
+      <ShortcutText>{text}</ShortcutText>
+    </ShortcutCard>
+  );
+}
+
+function ServiceCard({ text, image, onClick }) {
+  return (
+    <ServiceCardWrapper $image={image} onClick={onClick}>
       <ServiceButton>{text}</ServiceButton>
     </ServiceCardWrapper>
   );
@@ -99,8 +391,25 @@ function ServiceCard({ text, onClick }) {
 function MainPage() {
   const navigate = useNavigate();
 
-  const handleNavigation = (path) => {
-    navigate(path);
+  const navigateToBlog = () => {
+    window.open("https://blog.naver.com/el_tower", "_blank");
+  };
+
+  const navigateToLTypeTower = () => {
+    navigate("/business");
+  };
+  const navigateToTTypeTower = () => {
+    navigate("/business");
+  };
+  const navigateToLifting = () => {
+    navigate("/hoisting");
+  };
+  const navigateToCaseStudies = () => {
+    navigate("/construction");
+  };
+
+  const navigateToRequestForm = () => {
+    navigate("/request");
   };
 
   return (
@@ -120,16 +429,38 @@ function MainPage() {
           보다 혁신적이고 새로운 기술로 고객 곁에 다가갈 것을 약속드립니다.
         </HeroText>
       </HeroSection>
+      <ShortcutSection>
+        <ShortcutCardComponent
+          icon="🏗️"
+          text="L형 타워"
+          onClick={navigateToLTypeTower}
+        />
+        <ShortcutCardComponent
+          icon="🏗️"
+          text="T형 타워"
+          onClick={navigateToTTypeTower}
+        />
+        <ShortcutCardComponent
+          icon={<MdElevator />}
+          text="건설용 리프팅"
+          onClick={navigateToLifting}
+        />
+        <ShortcutCardComponent
+          icon="📋"
+          text="현장 사례"
+          onClick={navigateToCaseStudies}
+        />
+      </ShortcutSection>
       <ServicesSection>
         <ServiceHeading>Our Services</ServiceHeading>
-        <HeroText>
+        <ServiceHeroText>
           믿을 수 있는 타워크레인 전문 기업 엘기업이 여러분께 신뢰를 드립니다.
           <br />
           빠르게 변화하는 건설시장에 대응하여
           <br />
           최고의 품질, 보다 나은 서비스를 제공하기 위하여 최선을 다할 것을
           약속드립니다.
-        </HeroText>
+        </ServiceHeroText>
         <div style={{ textAlign: "center", padding: "2rem" }}>
           <div
             style={{
@@ -140,64 +471,48 @@ function MainPage() {
           >
             <ServiceCard
               text="타워크레인 임대"
-              onClick={() => handleNavigation("/")}
+              image={BusinessMobile}
+              onClick={navigateToBlog}
             />
             <ServiceCard
               text="건설용리프트 임대"
-              onClick={() => handleNavigation("/")}
+              image={HoistingMobile}
+              onClick={navigateToBlog}
             />
             <ServiceCard
-              text="모니터링 시스템"
-              onClick={() => handleNavigation("/")}
-            />
-            <ServiceCard
-              text="스마트 안전기기"
-              onClick={() => handleNavigation("/")}
+              text="출고전 사전 점검"
+              image={MainImage1_3}
+              onClick={navigateToBlog}
             />
           </div>
         </div>
       </ServicesSection>
-      <LocationsSection>
-        <LocationHeading>Our Locations</LocationHeading>
-        <Grid container spacing={2} justifyContent="center">
-          <Grid item>
-            <LocationWrapper>
-              <div className="text-xl font-semibold mb-2">본사</div>
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3178.054271062003!2d127.08632511290881!3d37.198940372019784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b45c9678cc3a9%3A0x1306c04576be5b55!2z6rK96riw64-EIO2ZlOyEseyLnCDrj5ntg4TqsJDrsLDsgrDroZwgMTQz!5e0!3m2!1sko!2skr!4v1729534638544!5m2!1sko!2skr"
-                width="450"
-                height="300"
-                allowFullScreen=""
-                loading="lazy"
-                title="Seoul Office Location Map"
-                className="mx-auto mb-4"
-              ></iframe>
-              <p>"경기도 화성시 동탄감배삼로 143, 202동 1810호"</p>
-              <p>T. 031-378-6298</p>
-              <p>M. 010-7529-9258</p>
-              <p>F. 031-379-6297</p>
-            </LocationWrapper>
-          </Grid>
-          <Grid item>
-            <LocationWrapper>
-              <div className="text-xl font-semibold mb-2">공장</div>
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4512.476644214021!2d127.62597832455846!3d36.895064738088394!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3564c0191742705b%3A0xdc0d4fe640aa043!2z7Lap7LKt67aB64-EIOydjOyEseq1sCDsm5DrgqjrqbQg642V7KCV66asIDQ1MC0x!5e0!3m2!1sko!2skr!4v1729573756198!5m2!1sko!2skr"
-                width="450"
-                height="300"
-                allowFullScreen=""
-                loading="lazy"
-                title="Pyeongtaek Factory Location Map"
-                className="mx-auto mb-4"
-              ></iframe>
-              <p>"충북 음성군 원남면 덕정리 450-1번지(396필 외 7필)</p>
-              <p>T. 031-378-6298</p>
-              <p>ㅤ</p>
-              <p>ㅤ</p>
-            </LocationWrapper>
-          </Grid>
-        </Grid>
-      </LocationsSection>
+      <BlogNote>
+        사진 클릭시 <span>EL기업 네이버 블로그</span> 창이 새로 열립니다
+      </BlogNote>
+      <Suspense fallback={<div>Loading...</div>}>
+        <EquipmentCarousel />
+      </Suspense>
+      <RequestSection>
+        <RequestTitle>문의 및 견적 요청</RequestTitle>
+        <ContactInfo>
+          <ContactItem>
+            회사 연락처:
+            <br />
+            <span>031-378-6298</span>
+            <br />
+            <span>010-5838-6298</span>
+          </ContactItem>
+          <ContactItem>
+            회사 이메일:
+            <br />
+            <span>elgiup@daum.net</span>
+          </ContactItem>
+        </ContactInfo>
+        <RequestButton onClick={navigateToRequestForm}>
+          견적 의뢰하러 가기
+        </RequestButton>
+      </RequestSection>
     </MainPageWrapper>
   );
 }

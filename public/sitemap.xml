@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- 홈페이지 -->
+  <url>
+    <loc>https://www.elgiup.co.kr/</loc>
+    <lastmod>2024-12-15T23:00:57+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- 공지사항 페이지 -->
+  <url>
+    <loc>https://www.elgiup.co.kr/newslist</loc>
+    <lastmod>2024-12-14T23:00:57+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 사업 소개 페이지 -->
+  <url>
+    <loc>https://www.elgiup.co.kr/business</loc>
+    <lastmod>2024-12-13T23:00:57+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- 호이스팅 페이지 -->
+  <url>
+    <loc>https://www.elgiup.co.kr/hoisting</loc>
+    <lastmod>2024-12-13T23:00:57+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- 공사실적 페이지 -->
+  <url>
+    <loc>https://www.elgiup.co.kr/construction</loc>
+    <lastmod>2024-12-12T23:00:57+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 견적의뢰 페이지 -->
+  <url>
+    <loc>https://www.elgiup.co.kr/request</loc>
+    <lastmod>2024-12-12T23:00:57+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>

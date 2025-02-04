@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import defaultImage from "../assets/MainPage2.webp";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import { db } from "../components/firebase";
+import Loading from "../components/Loading";
+import ConstructionImg from "/business/ConstructionImg.webp";
 
 const Container = styled.div`
   font-family: Arial, sans-serif;
+  user-select: none;
 `;
 
 const HeroSection = styled.section`
   width: 100%;
-  height: 300px;
+  height: 400px;
   background-size: cover;
-  background-position: center;
+  //background-position: center;
+  background-position: 0 -100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,6 +25,10 @@ const HeroSection = styled.section`
   h1 {
     font-size: 2rem;
     font-weight: bold;
+  }
+
+  @media (max-width: 425px) {
+    height: 250px;
   }
 `;
 
@@ -38,6 +47,7 @@ const ConstructionGrid = styled.div`
     grid-template-columns: 1fr;
     gap: 10px;
     padding: 0 10px;
+    max-width: 90%;
   }
 `;
 
@@ -50,7 +60,7 @@ const ConstructionItem = styled.div`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
   box-sizing: border-box;
-  cursor: pointer;
+  //cursor: pointer;
 
   img {
     width: 100%;
@@ -83,61 +93,52 @@ const CreatedDate = styled.p`
   font-size: 0.8rem;
 `;
 
-const ConstructionList = [
-  {
-    id: 1,
-    projectOverview: "서울 근린생활시설 타워크레인 설치사례",
-    main_image: defaultImage,
-    fuildGround: "27.5M x 21.6M",
-    buildingHeight: "지하 7.5M / 지상 46.25M",
-    leasePeriod: "6개월",
-    equipmentName: "HIL2826",
-    radius: "최대 25M",
-    weight: "Max 2.8ton - Tip 2.0ton",
-    shortDescription:
-      "타워크레인 설치를 건물 내부 엘리베이터 홀에 진행해야 했던 현장입니다. 엘리베이터 홀 사이즈가 2.2m x 1.75m 로 작아 원통형 타입인 HIL2825를 설치했던 현장 사례입니다.",
-  },
-  {
-    id: 2,
-    projectOverview: "서울 근린생활시설 타워크레인 설치사례",
-    main_image: defaultImage,
-    fuildGround: "27.5M x 21.6M",
-    buildingHeight: "지하 7.5M / 지상 46.25M",
-    leasePeriod: "6개월",
-    equipmentName: "HIL2826",
-    radius: "최대 25M",
-    weight: "Max 2.8ton - Tip 2.0ton",
-    shortDescription:
-      "타워크레인 설치를 건물 내부 엘리베이터 홀에 진행해야 했던 현장입니다. 엘리베이터 홀 사이즈가 2.2m x 1.75m 로 작아 원통형 타입인 HIL2825를 설치했던 현장 사례입니다.",
-  },
-  {
-    id: 3,
-    projectOverview: "서울 근린생활시설 타워크레인 설치사례",
-    main_image: defaultImage,
-    fuildGround: "27.5M x 21.6M",
-    buildingHeight: "지하 7.5M / 지상 46.25M",
-    leasePeriod: "6개월",
-    equipmentName: "HIL2826",
-    radius: "최대 25M",
-    weight: "Max 2.8ton - Tip 2.0ton",
-    shortDescription:
-      "타워크레인 설치를 건물 내부 엘리베이터 홀에 진행해야 했던 현장입니다. 엘리베이터 홀 사이즈가 2.2m x 1.75m 로 작아 원통형 타입인 HIL2825를 설치했던 현장 사례입니다.",
-  },
-];
-
 const Construction = () => {
+  const [constructionList, setConstructionList] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchConstructionData = async () => {
+      try {
+        const q = query(
+          collection(db, "constructionProjects"),
+          orderBy("created_at", "desc")
+        );
+        const querySnapshot = await getDocs(q);
+        const data = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setConstructionList(data);
+      } catch (error) {
+        console.error("Error fetching construction projects:", error);
+        alert("데이터를 불러오는 중 문제가 발생했습니다.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchConstructionData();
+  }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <Container>
-      <HeroSection style={{ backgroundImage: `url(${defaultImage})` }}>
-        <h1>주요 공사 실적</h1>
+      <HeroSection style={{ backgroundImage: `url(${ConstructionImg})` }}>
+        <h1>주요 현장 사례</h1>
       </HeroSection>
       <ConstructionGrid>
-        {ConstructionList.map((el) => (
+        {constructionList.map((el) => (
           <ConstructionItem key={el.id}>
             <img src={el.main_image} alt={el.projectOverview} />
             <FirstInfo>
               <CompanyName>(주)엘기업</CompanyName>
-              <CreatedDate>2024.11.11</CreatedDate>
+              <CreatedDate>
+                {new Date(el.created_at.seconds * 1000).toLocaleDateString()}
+              </CreatedDate>
             </FirstInfo>
             <ConstructionInfo>
               <p>프로젝트 개요: {el.projectOverview}</p>
