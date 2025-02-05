@@ -31,7 +31,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 800px;
+  max-width: 600px;
   padding: 2rem;
   background-color: #f9f9f9;
   border-radius: 8px;
@@ -108,7 +108,7 @@ const InfoBox = styled.div`
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: left;
-  height: 875px;
+  height: 890px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -120,7 +120,7 @@ const InfoTitle = styled.h3`
   color: #333;
   margin-bottom: 1.5rem;
   padding-bottom: 0.5rem;
-
+  text-align: center;
   border-bottom: 4px solid;
   border-image: linear-gradient(to right, black 50%, red 50%);
   border-image-slice: 1;
@@ -150,6 +150,29 @@ const InfoItem = styled.li`
     -webkit-text-fill-color: transparent;
     text-fill-color: transparent; /* For non-WebKit browsers supporting text-fill */
   }
+`;
+
+const InfoWrapper = styled.div`
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 20px; /* 박스 간 간격 */
+  max-width: 400px;
+`;
+
+const InfoBoxItem = styled.div`
+  width: 315px;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #ffffff, #f9f9f9);
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
 `;
 
 function RequestForm() {
@@ -249,7 +272,6 @@ function RequestForm() {
       <HeroSection style={{ backgroundImage: `url(${RequestImg})` }}>
         <div>
           <h1>Customer Center</h1>
-          {/* <h3>고객센터</h3> */}
         </div>
       </HeroSection>
       <ContainerWrapper>
@@ -264,6 +286,33 @@ function RequestForm() {
             <InfoItem>3. 담당자 분 명함 혹은 연락처를 꼭 남겨주세요</InfoItem>
           </InfoList>
         </InfoBox> */}
+        <InfoBox>
+          <InfoWrapper>
+            <InfoBoxItem>
+              <InfoTitle>캐드도면이 필요합니다</InfoTitle>
+              <p>
+                더 정확한 견적을 위해 복공도면,
+                <br /> 구조도면, 건축도면을 첨부해 주세요.
+              </p>
+            </InfoBoxItem>
+
+            <InfoBoxItem>
+              <InfoTitle>타워 설치 일정</InfoTitle>
+              <p>
+                타워 설치 시점 및 임대 기간을 <br />
+                명확히 기재해 주세요.
+              </p>
+            </InfoBoxItem>
+
+            <InfoBoxItem>
+              <InfoTitle>담당자 연락처</InfoTitle>
+              <p>
+                담당자 명함 또는 연락처를 <br />
+                반드시 남겨주세요.
+              </p>
+            </InfoBoxItem>
+          </InfoWrapper>
+        </InfoBox>
         <Container>
           <form onSubmit={handleSubmit}>
             <InfoTitle>견적 의뢰</InfoTitle>
@@ -301,11 +350,7 @@ function RequestForm() {
             />
             <Textarea
               name="message"
-              placeholder="내용
-              1. 캐드도면이 있어야 더욱 정확합니다. 
-              (복공도면, 구조도면,건축도면)            
-              2. 타워설치 시점 및 임대기간을 알려주세요.
-              3. 담당자 분 명함 혹은 연락처를 꼭 남겨주세요."
+              placeholder="내용"
               value={formData.message}
               onChange={handleChange}
               required

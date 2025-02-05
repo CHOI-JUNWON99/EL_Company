@@ -44,10 +44,16 @@ const MenuItem = styled.li`
   &:hover > ul {
     display: block;
   }
+
+  & > span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
 `;
 
 const DropdownMenu = styled.ul`
-  display: none;
+  display: ${(props) => (props.open ? "block" : "none")};
   position: absolute;
   top: 100%;
   left: -20px;
@@ -100,14 +106,14 @@ const Sidebar = styled.div`
   right: ${(props) =>
     props.open ? "0" : "-100%"}; /* 오른쪽 끝에서 슬라이드 */
   height: 100%;
-  width: 170px;
+  width: 250px;
   background-color: #ffffff;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
   transition: right 0.3s ease-in-out;
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  padding-top: 2rem;
+  padding-top: 20px;
   user-select: none;
 
   ul {
@@ -116,11 +122,11 @@ const Sidebar = styled.div`
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 15px;
 
     li {
       padding: 10px 20px;
-      font-size: 1rem;
+      font-size: 1.2rem;
       font-weight: bold;
       color: #333;
       cursor: pointer;
@@ -148,10 +154,18 @@ const SidebarOverlay = styled.div`
 const Navbar = () => {
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
+  const [dropdownOpen, setDropdownOpen] = useState({
+    company: false,
+    business: false,
+  });
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
   const closeSidebar = () => setSidebarOpen(false);
-
+  const toggleDropdown = (menu) => {
+    setDropdownOpen((prev) => ({
+      ...prev,
+      [menu]: !prev[menu],
+    }));
+  };
   return (
     <>
       <NavbarContainer>
@@ -191,83 +205,28 @@ const Navbar = () => {
       {/* 사이드바 */}
       <Sidebar open={sidebarOpen}>
         <ul>
-          <li
-            onClick={() => {
-              closeSidebar();
-              navigate("/");
-            }}
-          >
-            메인
+          <li onClick={() => navigate("/")}>메인</li>
+          <li onClick={() => toggleDropdown("company")}>
+            회사소개 {dropdownOpen.company ? "-" : "+"}
+            {dropdownOpen.company && (
+              <ul>
+                <li onClick={() => navigate("/company")}>인사말</li>
+                <li onClick={() => navigate("/location")}>오시는 길</li>
+              </ul>
+            )}
           </li>
-          <li>
-            회사소개 ∨
-            <ul>
-              <li
-                onClick={() => {
-                  closeSidebar();
-                  navigate("/company");
-                }}
-              >
-                인사말
-              </li>
-              <li
-                onClick={() => {
-                  closeSidebar();
-                  navigate("/location");
-                }}
-              >
-                오시는 길
-              </li>
-            </ul>
+          <li onClick={() => toggleDropdown("business")}>
+            사업분야 {dropdownOpen.business ? "-" : "+"}
+            {dropdownOpen.business && (
+              <ul>
+                <li onClick={() => navigate("/business")}>타워크레인</li>
+                <li onClick={() => navigate("/hoisting")}>건설용 리프팅</li>
+              </ul>
+            )}
           </li>
-          <li>
-            사업분야 ∨
-            <ul>
-              <li
-                onClick={() => {
-                  closeSidebar();
-                  navigate("/business");
-                }}
-              >
-                타워크레인
-              </li>
-              <li
-                onClick={() => {
-                  closeSidebar();
-                  navigate("/hoisting");
-                }}
-              >
-                건설용
-                <br />
-                리프팅
-              </li>
-            </ul>
-          </li>
-
-          <li
-            onClick={() => {
-              closeSidebar();
-              navigate("/construction");
-            }}
-          >
-            현장사례
-          </li>
-          <li
-            onClick={() => {
-              closeSidebar();
-              navigate("/request");
-            }}
-          >
-            견적의뢰
-          </li>
-          <li
-            onClick={() => {
-              closeSidebar();
-              navigate("/newslist");
-            }}
-          >
-            공지사항
-          </li>
+          <li onClick={() => navigate("/construction")}>현장사례</li>
+          <li onClick={() => navigate("/request")}>견적의뢰</li>
+          <li onClick={() => navigate("/newslist")}>공지사항</li>
         </ul>
       </Sidebar>
     </>
