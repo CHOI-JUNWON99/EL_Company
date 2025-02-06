@@ -420,8 +420,8 @@ function MainPage() {
           <br />
           타워크레인의 수많은 경험과 실적으로 구성된 직원들의 경험을 바탕으로
           <br />
-          현장 상황에 알맞은 장비선정 및 타워크레인의 사용에 대한 어려움과
-          불편함을 해소시켜드립니다.
+          현장 상황에 알맞은 장비선정 및 타워크레인의 사용에 대한
+          <br /> 어려움과 불편함을 해소시켜드립니다.
           <br />
           또한 보다 나은 서비스로 고객만족의 개념으로 신속하고 안전하게 최선을
           다하며
@@ -451,6 +451,7 @@ function MainPage() {
           onClick={navigateToCaseStudies}
         />
       </ShortcutSection>
+
       <ServicesSection>
         <ServiceHeading>Our Services</ServiceHeading>
         <ServiceHeroText>
@@ -512,6 +513,26 @@ function MainPage() {
         <RequestButton onClick={navigateToRequestForm}>
           견적 의뢰하러 가기
         </RequestButton>
+        <h1
+          style={{
+            fontSize: "0.8rem",
+            fontWeight: "bold",
+
+            userSelect: "none",
+          }}
+        >
+          엘기업 - 타워크레인 임대 전문 기업
+        </h1>
+        <p
+          style={{
+            fontSize: "0.8rem",
+            fontWeight: "bold",
+            lineHeight: "1.5",
+            margin: "0 auto",
+          }}
+        >
+          엘기업은 신속하고 안전한 타워크레인 임대 서비스를 제공합니다.
+        </p>
       </RequestSection>
     </MainPageWrapper>
   );
