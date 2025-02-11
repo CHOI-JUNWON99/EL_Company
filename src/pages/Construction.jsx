@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { db } from "../components/firebase";
 import Loading from "../components/Loading";
-import ConstructionImg from "/business/ConstructionImg.webp";
+import ConstructionImg from "/business/ConstructionImg.png";
 
 const Container = styled.div`
   font-family: Arial, sans-serif;
@@ -15,7 +15,7 @@ const HeroSection = styled.section`
   height: 400px;
   background-size: cover;
   //background-position: center;
-  background-position: 0 -100px;
+  /* background-position: 0 -100px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,8 +27,24 @@ const HeroSection = styled.section`
     font-weight: bold;
   }
 
-  @media (max-width: 425px) {
+  @media (max-width: 1100px) {
     height: 250px;
+  }
+
+  @media (max-width: 800px) {
+    height: 250px;
+  }
+
+  @media (max-width: 640px) {
+    height: 250px;
+  }
+
+  @media (max-width: 500px) {
+    height: 200px;
+  }
+
+  @media (max-width: 400px) {
+    height: 160px;
   }
 `;
 
@@ -127,9 +143,9 @@ const Construction = () => {
 
   return (
     <Container>
-      <HeroSection style={{ backgroundImage: `url(${ConstructionImg})` }}>
-        <h1>주요 현장 사례</h1>
-      </HeroSection>
+      <HeroSection
+        style={{ backgroundImage: `url(${ConstructionImg})` }}
+      ></HeroSection>
       <ConstructionGrid>
         {constructionList.map((el) => (
           <ConstructionItem key={el.id}>

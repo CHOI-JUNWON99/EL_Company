@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import hello from "/business/Hello2.jpg";
+import hello from "/business/Hello.png";
 
 // Hero Section
 const HeroSection = styled.section`
@@ -19,9 +19,24 @@ const HeroSection = styled.section`
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   user-select: none;
 
-  @media (max-width: 430px) {
-    width: 100%;
+  @media (max-width: 1100px) {
     height: 250px;
+  }
+
+  @media (max-width: 800px) {
+    height: 250px;
+  }
+
+  @media (max-width: 640px) {
+    height: 250px;
+  }
+
+  @media (max-width: 500px) {
+    height: 200px;
+  }
+
+  @media (max-width: 400px) {
+    height: 160px;
   }
 `;
 

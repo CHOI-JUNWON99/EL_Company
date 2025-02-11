@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import NewsImg from "/business/NewsImg.webp";
+import NewsImg from "/business/NewsImg.png";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { db } from "../components/firebase";
 import Loading from "../components/Loading";
@@ -222,9 +222,7 @@ function NewsList() {
 
   return (
     <NewsContainer>
-      <HeroSection>
-        <h1>공지사항</h1>
-      </HeroSection>
+      <HeroSection></HeroSection>
 
       <SearchAndAdd>
         <SearchInput
