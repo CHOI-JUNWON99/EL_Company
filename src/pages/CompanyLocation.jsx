@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 40%;
+  width: 70%;
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
@@ -17,6 +17,16 @@ const MapSection = styled.div`
     height: 100%;
     border: none;
     border-radius: 10px;
+  }
+
+  @media (max-width: 768px) {
+    height: 250px;
+  }
+  @media (max-width: 570px) {
+    height: 200px;
+  }
+  @media (max-width: 475px) {
+    height: 150px;
   }
 `;
 
@@ -36,11 +46,35 @@ const Heading = styled.h2`
   text-align: left;
   background-color: #f9f9f9;
   user-select: none;
+
+  @media (max-width: 768px) {
+    font-size: 1.6rem;
+  }
+
+  @media (max-width: 570px) {
+    font-size: 1.4rem;
+  }
+
+  @media (max-width: 475px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const InfoText = styled.p`
   font-size: 1.2rem;
   color: #555;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 570px) {
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 570px) {
+    font-size: 0.7rem;
+  }
 `;
 
 const Marginbox = styled.div`

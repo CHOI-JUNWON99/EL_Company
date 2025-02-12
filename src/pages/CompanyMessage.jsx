@@ -19,24 +19,25 @@ const HeroSection = styled.section`
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   user-select: none;
 
-  @media (max-width: 1100px) {
-    height: 250px;
-  }
-
-  @media (max-width: 800px) {
-    height: 250px;
-  }
-
-  @media (max-width: 640px) {
-    height: 250px;
-  }
-
-  @media (max-width: 500px) {
+  @media (max-width: 768px) {
+    background-image: url("/business/Hello2.png"); /* 768px 이하에서 다른 이미지로 변경 */
     height: 200px;
   }
 
-  @media (max-width: 400px) {
-    height: 160px;
+  @media (max-width: 1560px) {
+    height: 300px;
+  }
+
+  @media (max-width: 1440px) {
+    height: 300px;
+  }
+
+  @media (max-width: 1170px) {
+    height: 250px;
+  }
+
+  @media (max-width: 980px) {
+    height: 200px;
   }
 `;
 
@@ -48,36 +49,59 @@ const IntroSection = styled.section`
   user-select: none;
 
   h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
     color: #333;
     margin-bottom: 1rem;
   }
 
   p {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #555;
     line-height: 1.8;
     max-width: 800px;
     margin: 0 auto;
   }
 
-  .signature {
+  h4 {
     margin-top: 2rem;
     font-weight: bold;
     font-size: 1.2rem;
     color: #222;
   }
 
+  @media (max-width: 1024px) {
+    padding: 3rem 1rem;
+
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    p {
+      font-size: 0.8rem;
+    }
+
+    h4 {
+      font-size: 1rem;
+      margin-top: 1.8rem;
+    }
+  }
+
   @media (max-width: 768px) {
     padding: 3rem 1rem;
 
     h2 {
-      font-size: 1.5rem;
+      font-size: 1rem;
     }
 
     p {
-      font-size: 1rem;
+      font-size: 0.7rem;
+    }
+
+    h4 {
+      font-size: 0.8rem;
+      margin-top: 1.6rem;
     }
   }
 `;
@@ -181,7 +205,7 @@ const CompanyMessage = () => {
           여러분의 관심과 성원에 진심으로 감사드리며, <br />
           언제나 건강과 행복이 가득하시길 기원합니다.
         </p>
-        <div className="signature">[㈜ 엘기업 일동]</div>
+        <h4>[㈜ 엘기업 일동]</h4>
       </IntroSection>
       <CompanyInfoSection>
         <table>

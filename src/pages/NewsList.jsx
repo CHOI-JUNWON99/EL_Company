@@ -28,6 +28,14 @@ const HeroSection = styled.section`
     font-size: 2rem;
     font-weight: bold;
   }
+
+  @media (max-width: 768px) {
+    height: 300px;
+  }
+
+  @media (max-width: 425px) {
+    height: 250px;
+  }
 `;
 
 const SearchAndAdd = styled.div`
@@ -45,6 +53,10 @@ const SearchInput = styled.input`
   border: 1px solid #ddd;
   margin-right: 10px;
   margin-left: 10px;
+
+  @media (max-width: 1350px) {
+    max-width: 70%;
+  }
 `;
 
 const AddNewsButton = styled.button`
@@ -56,7 +68,7 @@ const AddNewsButton = styled.button`
   cursor: pointer;
   width: 60px;
   height: 40px;
-  margin-right: 10px;
+  margin-right: 20px;
 
   &:hover {
     background-color: #333;
@@ -72,9 +84,13 @@ const NewsGrid = styled.div`
   max-width: 1200px;
   justify-content: center;
   align-items: start;
+  justify-items: center;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 0 10px;
+    max-width: 90%;
   }
 `;
 
@@ -90,7 +106,7 @@ const NewsItem = styled.div`
   box-sizing: border-box;
   width: 100%;
   max-width: 400px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   cursor: pointer;
 
   img {
@@ -98,6 +114,14 @@ const NewsItem = styled.div`
     height: 150px;
     object-fit: cover;
     border-radius: 8px;
+
+    @media (max-width: 1210px) {
+      height: 100px;
+    }
+
+    @media (max-width: 425px) {
+      height: 90px;
+    }
   }
 
   h3 {
@@ -116,6 +140,26 @@ const NewsItem = styled.div`
     display: -webkit-box;
     -webkit-line-clamp: 3; /* 보여줄 텍스트 줄 수 */
     -webkit-box-orient: vertical;
+
+    @media (max-width: 1110px) {
+      font-size: 0.7rem;
+    }
+
+    @media (max-width: 375px) {
+      font-size: 0.6rem;
+    }
+  }
+
+  /* @media (max-width: 1210px) {
+    margin-left: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 1rem;
+  } */
+
+  @media (max-width: 560px) {
+    width: 90%;
   }
 `;
 
