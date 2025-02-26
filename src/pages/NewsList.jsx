@@ -111,7 +111,7 @@ const NewsItem = styled.div`
 
   img {
     width: 100%;
-    height: 150px;
+    height: 130px;
     object-fit: cover;
     border-radius: 8px;
 

@@ -42,7 +42,7 @@ function Footer() {
         </FooterText>
         <FooterText>
           본사: 경기도 화성시 동탄감배산로 143, 202동 1810호 | 공장 : 충북
-          음성군 원남면 덕정리 450-1번지(396필 외 7필)
+          음성군 원남면 덕정리 396번지 외 7필
         </FooterText>
       </Container>
     </FooterWrapper>

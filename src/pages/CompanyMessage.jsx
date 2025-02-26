@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import hello from "/business/Hello.png";
+import logo from "/elgiup_logo_64x64.png";
 
 // Hero Section
 const HeroSection = styled.section`
@@ -63,8 +64,21 @@ const IntroSection = styled.section`
     margin: 0 auto;
   }
 
-  h4 {
+  .footer-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 2rem;
+    transform: translateX(300px);
+  }
+
+  .logo {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+  }
+
+  h4 {
     font-weight: bold;
     font-size: 1.2rem;
     color: #222;
@@ -205,14 +219,32 @@ const CompanyMessage = () => {
           여러분의 관심과 성원에 진심으로 감사드리며, <br />
           언제나 건강과 행복이 가득하시길 기원합니다.
         </p>
-        <h4>[㈜ 엘기업 일동]</h4>
+        <div className="footer-container">
+          <img src={logo} alt="엘기업 로고" className="logo" />
+          <h4>㈜ 엘기업 일동</h4>
+        </div>
       </IntroSection>
+      {/* 주요 특징 섹션 */}
+      <FeatureSection>
+        <div className="feature-card">
+          <h4>도심건설 특화</h4>
+          <p>20년 이상의 경험과 노하우를 바탕으로 다양한 현장 솔루션 제공</p>
+        </div>
+        <div className="feature-card">
+          <h4>체계적인 지원</h4>
+          <p>최적화된 설계 및 신속한 현장 지원 시스템 구축</p>
+        </div>
+        <div className="feature-card">
+          <h4>장비 관리 및 투자</h4>
+          <p>철저한 점검과 지속적 재투자로 품질 보장</p>
+        </div>
+      </FeatureSection>
       <CompanyInfoSection>
         <table>
           <tbody>
             <tr>
               <th>회사명</th>
-              <td>주식회사 엘기업 (EL Tower Co., Ltd.)</td>
+              <td>주식회사 엘기업 (ELGIUP Co., Ltd.)</td>
             </tr>
             <tr>
               <th>업종</th>
@@ -228,7 +260,7 @@ const CompanyMessage = () => {
             </tr>
             <tr>
               <th>공장</th>
-              <td>충북 음성군 원남면 덕정리 450-1번지(396필 외 7필)</td>
+              <td>충북 음성군 원남면 덕정리 396번지 외 7필</td>
             </tr>
             <tr>
               <th>전화번호</th>
@@ -247,22 +279,6 @@ const CompanyMessage = () => {
           </tbody>
         </table>
       </CompanyInfoSection>
-
-      {/* 주요 특징 섹션 */}
-      <FeatureSection>
-        <div className="feature-card">
-          <h4>도심건설 특화</h4>
-          <p>20년 이상의 경험과 노하우를 바탕으로 다양한 현장 솔루션 제공</p>
-        </div>
-        <div className="feature-card">
-          <h4>체계적인 지원</h4>
-          <p>최적화된 설계 및 신속한 현장 지원 시스템 구축</p>
-        </div>
-        <div className="feature-card">
-          <h4>장비 관리 및 투자</h4>
-          <p>철저한 점검과 지속적 재투자로 품질 보장</p>
-        </div>
-      </FeatureSection>
     </div>
   );
 };

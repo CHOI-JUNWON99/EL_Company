@@ -182,7 +182,7 @@ function RequestForm() {
     phone: "",
     email: "",
     message: "",
-  });
+  }); //여기
   const [files, setFiles] = useState([]); // 다중 파일 선택 상태
   const [uploading, setUploading] = useState(false);
 
@@ -223,7 +223,7 @@ function RequestForm() {
       if (files.length > 0) {
         const storage = getStorage();
         for (const file of files) {
-          const folder = file.type.startsWith("image/") ? "images" : "files";
+          const folder = file.type.startsWith("image/") ? "images" : "files"; //여기
           const storageRef = ref(storage, `${folder}/${file.name}`);
           await uploadBytes(storageRef, file);
           const fileUrl = await getDownloadURL(storageRef);
@@ -246,7 +246,7 @@ function RequestForm() {
       );
 
       if (response.ok) {
-        alert("견적 요청이 성공적으로 제출되었습니다!");
+        alert("견적 요청이 성공적으로 제출되었습니다!"); //여기
         setFormData({
           subject: "",
           name: "",
@@ -355,6 +355,7 @@ function RequestForm() {
               onChange={handleChange}
               required
             />
+            {/*여기 */}
             <Input type="file" multiple onChange={handleFileChange} />
             <Button type="submit" disabled={uploading}>
               {uploading ? "업로드 중..." : "제출"}
