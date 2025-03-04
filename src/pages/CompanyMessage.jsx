@@ -67,9 +67,10 @@ const IntroSection = styled.section`
   .footer-container {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end; /* 우측 정렬 */
     margin-top: 2rem;
-    transform: translateX(300px);
+    width: 100%; /* 전체 너비 사용 */
+    padding-right: 20px; /* 너무 끝으로 가는 것 방지 */
   }
 
   .logo {
@@ -116,6 +117,11 @@ const IntroSection = styled.section`
     h4 {
       font-size: 0.8rem;
       margin-top: 1.6rem;
+    }
+
+    .footer-container {
+      justify-content: center;
+      padding-right: 0;
     }
   }
 `;
@@ -221,7 +227,7 @@ const CompanyMessage = () => {
         </p>
         <div className="footer-container">
           <img src={logo} alt="엘기업 로고" className="logo" />
-          <h4>㈜ 엘기업 일동</h4>
+          <h4>㈜ 엘기업 임직원 일동</h4>
         </div>
       </IntroSection>
       {/* 주요 특징 섹션 */}

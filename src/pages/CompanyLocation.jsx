@@ -120,9 +120,7 @@ function CompanyLocation() {
         ></iframe>
       </MapSection>
       <InfoSection>
-        <InfoText>
-          주소: 충북 음성군 원남면 덕정리 450-1번지(396필 외 7필)
-        </InfoText>
+        <InfoText>주소: 충북 음성군 원남면 덕정리 396번지 외 7필</InfoText>
       </InfoSection>
       <Marginbox></Marginbox>
     </Container>
